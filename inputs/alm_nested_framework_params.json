@@ -1,0 +1,5 @@
+{
+    "primary_cost" : 0.0,
+    "secondary_cost" : 1.0,
+    "payoff" : "cdf_type_indicator"
+}

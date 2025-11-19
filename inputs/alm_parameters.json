@@ -1,0 +1,7 @@
+{
+    "horizon" : 10,
+    "min_guaranteed_rate" : 0,
+    "ps_rate" : 0.85,
+    "exit_rate" : 0.02,
+    "mr_0" : 1000
+}

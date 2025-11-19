@@ -1,0 +1,159 @@
+{
+    "nested_framework_files" : {
+        "alm_parameters_file" : "./inputs/alm_parameters.json",
+        "stock_parameters_file" : "./inputs/stock_parameters.json",
+        "nested_params_file" : "./inputs/alm_nested_framework_params.json",
+        "structural_constants_file" : "./inputs/structural_constants.json"
+    },
+    "estimators": {
+        "nested_mc" : {
+            "steps" : {
+                "calibration" : true,
+                "theoretical_benchmark" : true,
+                "sampling" : true,
+                "plot" : true
+            },
+            "calibration": {
+                "epsilon" : [0.005, 0.0025, 0.00125, 0.000625, 0.0003125, 0.00015625, 0.000078125]
+            },
+            "sampling" : {
+                "seed" : 14082025,
+                "mem_margin" : 0.4,
+                "n_samples" : 250,
+                "cdf_threshold" : 252.75873881492203,
+                "quantile_level" : 0.995,
+                "target_cdf" : 0.995,
+                "target_quantile" : 252.75873881492203
+            }
+        },
+        "optimized_ml2r" : {
+            "steps" : {
+                "calibration" : true,
+                "theoretical_benchmark" : true,
+                "sampling" : true,
+                "plot" : true
+            },
+            "calibration": {
+                "epsilon" : [0.005, 0.0025, 0.00125, 0.000625, 0.0003125, 0.00015625, 0.000078125]
+            },
+            "sampling" : {
+                "seed" : 14082025,
+                "mem_margin" : 0.4,
+                "n_samples" : 250,
+                "cdf_threshold" : 252.75873881492203,
+                "quantile_level" : 0.995,
+                "target_cdf" : 0.995,
+                "target_quantile" : 252.75873881492203
+            }
+        },
+        "closed_ml2r" : {
+            "steps" : {
+                "calibration" : true,
+                "theoretical_benchmark" : true,
+                "sampling" : true,
+                "plot" : true
+            },
+            "calibration": {
+                "epsilon" : [0.005, 0.0025, 0.00125, 0.000625, 0.0003125, 0.00015625, 0.000078125],
+                "K_bar" : 10
+            },
+            "sampling" : {
+                "seed" : 14082025,
+                "mem_margin" : 0.4,
+                "n_samples" : 250,
+                "cdf_threshold" : 252.75873881492203,
+                "quantile_level" : 0.995,
+                "target_cdf" : 0.995,
+                "target_quantile" : 252.75873881492203
+            }
+        },
+        "optimized_mlmc" : {
+            "steps" : {
+                "calibration" : true,
+                "theoretical_benchmark" : true,
+                "sampling" : true,
+                "plot" : true
+            },
+            "calibration": {
+                "epsilon" : [0.005, 0.0025, 0.00125, 0.000625, 0.0003125, 0.00015625, 0.000078125]
+            },
+            "sampling" : {
+                "seed" : 14082025,
+                "mem_margin" : 0.4,
+                "n_samples" : 250,
+                "cdf_threshold" : 252.75873881492203,
+                "quantile_level" : 0.995,
+                "target_cdf" : 0.995,
+                "target_quantile" : 252.75873881492203
+            }
+        },
+        "closed_mlmc" : {
+            "steps" : {
+                "calibration" : true,
+                "theoretical_benchmark" : true,
+                "sampling" : true,
+                "plot" : true
+            },
+            "calibration": {
+                "epsilon" : [0.005, 0.0025, 0.00125, 0.000625, 0.0003125, 0.00015625, 0.000078125],
+                "K_bar" : 10
+            },
+            "sampling" : {
+                "seed" : 14082025,
+                "mem_margin" : 0.4,
+                "n_samples" : 250,
+                "cdf_threshold" : 252.75873881492203,
+                "quantile_level" : 0.995,
+                "target_cdf" : 0.995,
+                "target_quantile" : 252.75873881492203
+            }
+        }
+    },
+    "plot_all_complexity" : {
+        "enabled" : true,
+        "estimators_list" : ["nested_mc", "optimized_ml2r", "closed_ml2r", "optimized_mlmc", "closed_mlmc"],
+        "epsilon" : [0.00125, 0.000625, 0.0003125, 0.00015625, 0.000078125]
+    },
+    "sensibility_tau" : {
+        "steps" : {
+            "calibration" : false,
+            "sampling" : false
+        },
+        "estimators": {
+            "optimized_ml2r" : {
+                "calibration" : {
+                    "max_cost" : 500000000,
+                    "tau" : [0, 25, 50, 75, 100]
+                },
+                "sampling" : {
+                    "seed" : 14082025,
+                    "mem_margin" : 0.4,
+                    "n_samples" : 1000,
+                    "cdf_threshold" : 252.75873881492203,
+                    "quantile_level" : 0.995,
+                    "target_cdf" : 0.995,
+                    "target_quantile" : 252.75873881492203
+                }
+            },
+            "closed_ml2r" : {
+                "calibration" : {
+                    "max_cost" : 500000000,
+                    "tau" : [0, 25, 50, 75, 100],
+                    "K_bar" : 10
+                },
+                "sampling" : {
+                    "seed" : 14082025,
+                    "mem_margin" : 0.4,
+                    "n_samples" : 1000,
+                    "cdf_threshold" : 252.75873881492203,
+                    "quantile_level" : 0.995,
+                    "target_cdf" : 0.995,
+                    "target_quantile" : 252.75873881492203
+                }
+            }
+        },
+        "plot" : {
+            "closed_ml2r_vs_optimized_ml2r" : true
+        }
+    }
+}

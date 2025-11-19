@@ -1,0 +1,14 @@
+﻿name: optimized_mlmc_nested_sim
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - ipykernel
+  - cuda-nvcc
+  - cuda-version=12.8
+  - cupy
+

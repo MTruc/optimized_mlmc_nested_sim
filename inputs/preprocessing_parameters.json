@@ -1,0 +1,28 @@
+{
+    "nested_framework_files" : {
+        "alm_parameters_file" : "./inputs/alm_parameters.json",
+        "stock_parameters_file" : "./inputs/stock_parameters.json",
+        "nested_params_file" : "./inputs/alm_nested_framework_params.json"
+    },
+    "estimators" : {
+        "all_structural_consts" : {
+            "steps" : {
+                "sampling" : true,
+                "plot" : true
+            },
+            "sampling" : {
+                "seed" : 6248,
+                "Kf" : [8, 16, 32, 64, 128, 256],
+                "J" : [128000000, 128000000, 128000000, 128000000, 128000000, 128000000],
+                "mem_margin" : 0.5,
+                "threshold" : 252.75873881492225
+            },
+            "plot" : {
+                "c1" : 0.025,
+                "c2" : 0.05,
+                "V1_anti" : 0.01,
+                "V1_non_anti" : 0.02 
+            }
+        }
+    }
+}
