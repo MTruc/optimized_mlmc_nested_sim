@@ -328,7 +328,7 @@ if params_plot_all["enabled"]:
     plt.grid()
     plt.savefig(Path("./outputs/quantile_all_rmse_cost.png"))
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 8))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
 
     ax1.set_title("C.D.F evaluation")
     for key in cdf_rmse.keys():
