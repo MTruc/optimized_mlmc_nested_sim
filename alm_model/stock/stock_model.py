@@ -56,12 +56,13 @@ class StockModel():
         t1 = s_previous.shape[1]
         T = t1 + gaussian_samples.shape[1]
         N = s_previous.shape[0]
+        xp = cp.get_array_module(s_previous)
 
-        stock_paths = np.empty((N, T))
+        stock_paths = xp.empty((N, T))
         stock_paths[:, :t1] = s_previous
         drift = r - 0.5*sigma**2
-        stock_paths[:, t1:] = np.exp(drift + sigma * gaussian_samples)
-        stock_paths[:, (t1-1):] = np.cumprod(stock_paths[:, (t1-1):], axis=1)
+        stock_paths[:, t1:] = xp.exp(drift + sigma * gaussian_samples)
+        stock_paths[:, (t1-1):] = xp.cumprod(stock_paths[:, (t1-1):], axis=1)
 
         return stock_paths
     

@@ -125,12 +125,13 @@ class AlmModel:
         gamma = self.parameters.ps_rate
         p = self.parameters.exit_rate
         T = self.parameters.horizon
-        mr = np.full(shape=(stock_paths.shape[0]), fill_value=self.parameters.mr_0)
+        xp = cp.get_array_module(stock_paths)
+        mr = xp.full(shape=(stock_paths.shape[0]), fill_value=self.parameters.mr_0)
         phi = mr / stock_paths[:, 0]
 
         for i in range(1, final_time):
 
-            rs = np.maximum(gamma * np.log(stock_paths[:, i] / stock_paths[:, i-1]), rg)
+            rs = xp.maximum(gamma * xp.log(stock_paths[:, i] / stock_paths[:, i-1]), rg)
             tilde_mr = mr * (1 + rs)
             delta_phi = tilde_mr * p / stock_paths[:, i]
             phi = phi - delta_phi

@@ -11,4 +11,4 @@ dependencies:
   - cuda-nvcc
   - cuda-version=12.8
   - cupy
-
+  - scikit-learn

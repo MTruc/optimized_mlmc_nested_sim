@@ -3,6 +3,7 @@ from alm_model.nested.nested_framework import(
 )
 
 from alm_model.nested.alm_framework import (
+    NestedFramework,
     AlmFramework,
     load_nested_alm_framework
     )

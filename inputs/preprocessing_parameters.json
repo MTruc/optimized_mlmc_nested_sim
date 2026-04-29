@@ -7,7 +7,7 @@
     "estimators" : {
         "all_structural_consts" : {
             "steps" : {
-                "sampling" : true,
+                "sampling" : false,
                 "plot" : true
             },
             "sampling" : {

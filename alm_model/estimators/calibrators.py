@@ -247,7 +247,7 @@ class BaseOptimizedMLMCCalibrator(GeneralMLMCCalibrator):
             theo_bias = self.mlmc_theoretical_results.theoretical_bias(mlmc_params)
             return self.effort_star(mlmc_params.K, mlmc_params.R) / (epsilon**2 - theo_bias**2)
 
-        K_min = self.get_K_min(epsilon, R)
+        K_min = max(self.get_K_min(epsilon, R), 1)
         return utils.unbounded_minimize_integer(f_to_min, K_min, K_min)[0]
     
     def get_R_max(self : typing.Self,
@@ -292,7 +292,7 @@ class BaseOptimizedMLMCCalibrator(GeneralMLMCCalibrator):
             return self.mlmc_theoretical_results.cost(parms) - cost
         
         eps_min = 1
-        eps_max = 1 / (10e10)
+        eps_max = 1 / (10e6)
         epsilon_star = optim.bisect(f_to_root, eps_min, eps_max)
         
         return self.calibrate(epsilon_star), epsilon_star

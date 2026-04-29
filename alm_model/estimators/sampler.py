@@ -109,7 +109,8 @@ class GeneralMLMCSampler():
     def __init__(self : typing.Self,
                 nested_framework : NestedFramework,
                 rng,
-                gpu_memory_margin = 0.9):
+                gpu_memory_margin = 0.9,
+                time_diagnostic = True):
         
         self.nested_framework = nested_framework
         self.rng = rng #cp generator
@@ -133,11 +134,14 @@ class GeneralMLMCSampler():
         self.gpu_memory_peak_in_MB_per_unit = gpu_memory_peak_in_MB_per_unit
         self.gpu_memory_margin = gpu_memory_margin
         
-        print("Diagnostic Time GPU Usage")
-        bench = benchmark(sample_EK_gpu, (self.nested_framework, J_diagnostic, K_diagnostic, self.rng), n_repeat=25)
-        avg_time = np.mean(bench.gpu_times) * 1.25
-        avg_time_unit = avg_time / (J_diagnostic * K_diagnostic)
-        self.avg_time_unit = avg_time_unit
+        if time_diagnostic:
+            print("Diagnostic Time GPU Usage")
+            bench = benchmark(sample_EK_gpu, (self.nested_framework, J_diagnostic, K_diagnostic, self.rng), n_repeat=1)
+            avg_time = np.mean(bench.gpu_times) * 1.25
+            avg_time_unit = avg_time / (J_diagnostic * K_diagnostic)
+            self.avg_time_unit = avg_time_unit
+        else:
+            self.avg_time_unit = None
     
     
     @abstractmethod
@@ -174,9 +178,10 @@ class BaseMLMCSamplerGPU(GeneralMLMCSampler):
                  nested_framework : NestedFrameworkParameters,
                  rng,
                  mlmc_theo_res : MLMCTheoreticalResults, #TODO fix les type hint avec factorisation
-                 gpu_memory_margin=0.9):
+                 gpu_memory_margin=0.9,
+                 time_diagnostic=True):
         self.mlmc_theo_res = mlmc_theo_res
-        super().__init__(nested_framework, rng, gpu_memory_margin)
+        super().__init__(nested_framework, rng, gpu_memory_margin, time_diagnostic)
     
     def generate_sample(self : typing.Self,
                     mc_params : NestedMCParameters) -> MLMCSample:
@@ -265,10 +270,10 @@ class BaseMLMCSamplerGPU(GeneralMLMCSampler):
     
 class ML2RSamplerGPU(BaseMLMCSamplerGPU):
     
-    def __init__(self, nested_framework, rng, ml2r_theo_res, gpu_memory_margin=0.9):
-        super().__init__(nested_framework, rng, ml2r_theo_res, gpu_memory_margin)
+    def __init__(self, nested_framework, rng, ml2r_theo_res, gpu_memory_margin=0.9, time_diagnostic=True):
+        super().__init__(nested_framework, rng, ml2r_theo_res, gpu_memory_margin, time_diagnostic)
 
 class MLMCSamplerGPU(BaseMLMCSamplerGPU):
     
-    def __init__(self, nested_framework, rng, mlmc_theo_res, gpu_memory_margin=0.9):
-        super().__init__(nested_framework, rng, mlmc_theo_res, gpu_memory_margin)
+    def __init__(self, nested_framework, rng, mlmc_theo_res, gpu_memory_margin=0.9, time_diagnostic=True):
+        super().__init__(nested_framework, rng, mlmc_theo_res, gpu_memory_margin, time_diagnostic)

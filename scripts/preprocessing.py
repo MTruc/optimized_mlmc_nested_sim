@@ -244,7 +244,7 @@ for key in estimators_params.keys():
             plt.grid()
             plt.xscale("log")
             plt.yscale("log")
-            plt.xlabel(r"$4K$")
+            plt.xlabel(r"$(2K)^2$")
             plt.legend()
             plt.savefig(output_folder / "c2_plot.png", bbox_inches='tight')
 
@@ -295,7 +295,7 @@ for key in estimators_params.keys():
             ax2.grid()
             ax2.set_xscale("log")
             ax2.set_yscale("log")
-            ax2.set_xlabel(r"$4K$")
+            ax2.set_xlabel(r"$(2K)^2$")
             ax2.legend()
 
             ax3.plot(df_res.index, df_res["Var D1"], color = "tab:blue", marker="o", label=r"Estimated $\mathrm{Var}[\Delta Y^A_{2K}]$")
